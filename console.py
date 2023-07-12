@@ -11,6 +11,8 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """a class for the console"""
     prompt = "(hbnb) "
+    classes = ["BaseModel"]
+
     def do_quit(self, *args):
         """exits the console"""
         return True
@@ -36,6 +38,10 @@ class HBNBCommand(cmd.Cmd):
             print("Quit command to exit the program\n")
         if arg == "create":
             print("Create command creates a model instance and saves it")
+        if arg == "show":
+            print("Show command prints string representation of an instance")
+        if arg == "destroy":
+            print("Destroy command deletes an instance")
 
     def do_create(self, *args):
         if args[0] == "":
@@ -47,15 +53,14 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-    def do_show(self, a):
+    def do_show(self, arg):
         """prints string representation of instance"""
-        classes = ["BaseModel"]
-        args = a.split()
+        args = arg.split()
 
         if args[0] == "":
             print("** class name missing **")
-        elif args[0] not in classes:
-            print("** class doesn't exist ** ")
+        elif args[0] not in self.classes:
+            print("** class doesn't exist **")
         elif len(args) == 1 or args[1] == '':
             print("** instance id missing **")
         else:
@@ -63,10 +68,29 @@ class HBNBCommand(cmd.Cmd):
             id = "{}.{}".format(args[0], args[1])
             obj = objs.get(id)
             if obj is None:
-                print("* no instance found **")
+                print("** no instance found **")
             else:
                 print(obj)
-                
+
+    def do_destroy(self, arg):
+        """prints string representation of instance"""
+        args = arg.split()
+
+        if args[0] == "":
+            print("** class name missing **")
+        elif args[0] not in self.classes:
+            print("** class doesn't exist **")
+        elif len(args) == 1 or args[1] == '':
+            print("** instance id missing **")
+        else:
+            objs = storage.all()
+            id = "{}.{}".format(args[0], args[1])
+            obj = objs.get(id)
+            if obj is None:
+                print("** no instance found **")
+            else:
+                objs.pop(id)
+                storage.save();   
 
 
 if __name__ == '__main__':
