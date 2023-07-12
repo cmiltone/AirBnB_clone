@@ -10,7 +10,7 @@ from models import storage
 class BaseModel:
     """Underlying model class for the app"""
     def __init__(self, *args, **kwargs):
-        """initializes the model"""
+        """initializes the base model for the app"""
         if kwargs:
             self.__dict__ = kwargs
         else:
