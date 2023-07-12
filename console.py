@@ -42,6 +42,8 @@ class HBNBCommand(cmd.Cmd):
             print("Show command prints string representation of an instance")
         if arg == "destroy":
             print("Destroy command deletes an instance")
+        if arg == "all":
+            print("All command prints string representation of all instances")
 
     def do_create(self, *args):
         if args[0] == "":
@@ -73,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
                 print(obj)
 
     def do_destroy(self, arg):
-        """prints string representation of instance"""
+        """deletes an instance"""
         args = arg.split()
 
         if args[0] == "":
@@ -90,7 +92,23 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 objs.pop(id)
-                storage.save();   
+                storage.save()
+
+    def do_all(self, arg):
+        """prints all instance"""
+        args = arg.split()
+
+        if len(args) > 0 and args[0] not in self.classes:
+            print("** class doesn't exist **")
+        elif len(args) > 0 and args[0] in self.classes:
+            #print single
+            print("")
+        else:
+            arr = []
+            objs = storage.all()
+            for k in objs:
+                arr.append("{}".format(objs[k]))
+            print(arr)
 
 
 if __name__ == '__main__':
