@@ -1,26 +1,32 @@
 #!/usr/bin/python3
 """
-module for base class
+module for base model class
 """
 import uuid
 from datetime import datetime
+from models import storage
 
 
 class BaseModel:
     """Underlying model class for the app"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """initializes the model"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            self.__dict__ = kwargs
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """returns string representation of the class"""
-        return "[{}] {} {}".format(BaseModel.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(BaseModel.__name__, self.id, self.__dict__)
 
     def save(self):
         """sets the updated_at attribute as current time"""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """
