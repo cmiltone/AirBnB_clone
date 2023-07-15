@@ -3,6 +3,7 @@
 
 # standard modules/packages
 import cmd
+import json
 
 # custom packages/modules
 from models.base_model import BaseModel
@@ -137,7 +138,18 @@ class HBNBCommand(cmd.Cmd):
             if obj is None:
                 print("** no instance found **")
             else:
-                setattr(obj, args[2], args[3])
+                val = args[3]
+                int_failed = False
+                try:
+                    val = int(val)
+                except (ValueError):
+                    int_failed = True
+                if int_failed:
+                    try:
+                        val = float(val)
+                    except (ValueError):
+                        pass
+                setattr(obj, args[2], val)
                 obj.save()
 
     def default(self, arg):
@@ -145,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
         command for:
             <class name>.all()
         """
-        [model, args] = arg.split(".")
+        [model, args] = arg.split(".", 1)
         [command, params] = args.split("(")
         params = params.replace(")", "")
 
@@ -171,12 +183,22 @@ class HBNBCommand(cmd.Cmd):
             params = params.replace("\"", "")
             self.do_destroy("{} {}".format(model, params))
         elif command == "update":
-            params = params.split(", ")
-            [id, field, value] = params
-            id = id.replace("\"", "")
-            field = field.replace("\"", "")
-            value = value.replace("\"", "")
-            self.do_update("{} {} {} {}".format(model, id, field, value))
+            if "{" in params and "}" in params:
+                params = params.split(", ", 1)
+            else:
+                params = params.split(", ")
+            if len(params) == 2:
+                [id, json_str] = params
+                data = json.loads(json_str)
+                for k in data:
+                   self.do_update("{} {} {} {}".format(model, id, k, data[k])) 
+            elif len(params) == 3:
+                [id, field, value] = params
+                id = id.replace("\"", "")
+                field = field.replace("\"", "")
+                value = value.replace("\"", "")
+                self.do_update("{} {} {} {}".format(model, id, field, value))
+            print(self.prompt)
 
 
 
