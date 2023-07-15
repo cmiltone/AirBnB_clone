@@ -5,6 +5,6 @@ module for state class
 from models.base_model import BaseModel
 
 
-class state(BaseModel):
+class State(BaseModel):
     """state class"""
     name = ""

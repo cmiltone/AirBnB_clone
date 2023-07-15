@@ -34,8 +34,14 @@ class FileStorage:
                 data = f.read()
                 objs = json.loads(data)
                 from models.base_model import BaseModel
+                from models.amenity import Amenity
+                from models.city import City
+                from models.place import Place
+                from models.review import Review
+                from models.state import State
+
                 for k, v in objs.items():
                     name = v.get('__class__')
                     FileStorage.__objects[k] = eval(str(name))(objs[k])
-        except (FileNotFoundError):
+        except (Exception):
             pass
