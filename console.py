@@ -140,6 +140,16 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, args[2], args[3])
                 obj.save()
 
+    def default(self, arg):
+        """
+        command for:
+            <class name>.all()
+        """
+        [model, args] = arg.split(".")
+        [command, params] = args.split("(")
+        params = params.replace(")", "")
+        self.do_all("{}".format(model))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
