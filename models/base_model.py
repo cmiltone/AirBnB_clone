@@ -2,12 +2,13 @@
 """
 module for base model class
 """
+from typing import Any
 import uuid
 from datetime import datetime
 from models import storage
 
 
-class BaseModel:
+class BaseModel(object):
     """Underlying model class for the app"""
     def __init__(self, *args, **kwargs):
         """initializes the base model for the app"""
@@ -47,3 +48,9 @@ class BaseModel:
         _dict['updated_at'] = self.updated_at.isoformat()
 
         return _dict
+
+    def __setattr__(self, __key, __value):
+        if __key != "updated_at":
+            # setattr(self, __key, __value)
+            self.updated_at = datetime.now()
+        super(BaseModel, self).__setattr__(__key, __value)
