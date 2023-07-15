@@ -148,7 +148,21 @@ class HBNBCommand(cmd.Cmd):
         [model, args] = arg.split(".")
         [command, params] = args.split("(")
         params = params.replace(")", "")
-        self.do_all("{}".format(model))
+        if command == "all":
+            self.do_all("{}".format(model))
+        elif command == "count":
+            count = 0
+            objs = storage.all()
+            if params:
+                for k in objs:
+                    if "{}.{}".format(model, params) in k:
+                        count += 1
+            else:
+                for k in objs:
+                    if model in k:
+                        count += 1
+            print(count)
+
 
 
 if __name__ == '__main__':
