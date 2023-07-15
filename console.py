@@ -8,10 +8,11 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """a class for the console"""
     prompt = "(hbnb) "
-    classes = ["BaseModel"]
+    classes = ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
 
     def do_quit(self, *args):
         """exits the console"""
@@ -102,7 +103,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(args) > 0 and args[0] in self.classes:
             #print single
-            print("")
+            arr = []
+            objs = storage.all()
+            for k in objs:
+                if args[0] in k:
+                    arr.append("{}".format(objs[k]))
+            print(arr)
         else:
             arr = []
             objs = storage.all()
