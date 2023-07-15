@@ -13,7 +13,15 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """a class for the console"""
     prompt = "(hbnb) "
-    classes = ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
+    classes = [
+        "BaseModel",
+        "User",
+        "Place",
+        "State",
+        "City",
+        "Amenity",
+        "Review"
+    ]
 
     def do_quit(self, *args):
         """exits the console"""
@@ -103,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) > 0 and args[0] not in self.classes:
             print("** class doesn't exist **")
         elif len(args) > 0 and args[0] in self.classes:
-            #print single
+            # print single class
             arr = []
             objs = storage.all()
             for k in objs:
@@ -111,6 +119,7 @@ class HBNBCommand(cmd.Cmd):
                     arr.append("{}".format(objs[k]))
             print(arr)
         else:
+            # print all classes
             arr = []
             objs = storage.all()
             for k in objs:
@@ -191,7 +200,7 @@ class HBNBCommand(cmd.Cmd):
                 [id, json_str] = params
                 data = json.loads(json_str)
                 for k in data:
-                   self.do_update("{} {} {} {}".format(model, id, k, data[k])) 
+                    self.do_update("{} {} {} {}".format(model, id, k, data[k]))
             elif len(params) == 3:
                 [id, field, value] = params
                 id = id.replace("\"", "")
@@ -199,7 +208,6 @@ class HBNBCommand(cmd.Cmd):
                 value = value.replace("\"", "")
                 self.do_update("{} {} {} {}".format(model, id, field, value))
             print(self.prompt)
-
 
 
 if __name__ == '__main__':
