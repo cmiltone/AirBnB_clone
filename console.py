@@ -148,9 +148,11 @@ class HBNBCommand(cmd.Cmd):
         [model, args] = arg.split(".")
         [command, params] = args.split("(")
         params = params.replace(")", "")
+
         if command == "all":
             self.do_all("{}".format(model))
         elif command == "count":
+            params = params.replace("\"", "")
             count = 0
             objs = storage.all()
             if params:
@@ -163,7 +165,18 @@ class HBNBCommand(cmd.Cmd):
                         count += 1
             print(count)
         elif command == "show":
+            params = params.replace("\"", "")
             self.do_show("{} {}".format(model, params))
+        elif command == "destroy":
+            params = params.replace("\"", "")
+            self.do_destroy("{} {}".format(model, params))
+        elif command == "update":
+            params = params.split(", ")
+            [id, field, value] = params
+            id = id.replace("\"", "")
+            field = field.replace("\"", "")
+            value = value.replace("\"", "")
+            self.do_update("{} {} {} {}".format(model, id, field, value))
 
 
 
