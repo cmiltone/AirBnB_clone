@@ -12,7 +12,11 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """initializes the base model for the app"""
         if kwargs:
-            self.__dict__ = kwargs
+            for k, v in kwargs.items():
+                if k == "created_at" or k == "updated_at":
+                    setattr(self, k, datetime.fromisoformat(v))
+                elif k != "__class__":
+                    setattr(self, k, v)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
