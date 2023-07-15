@@ -162,6 +162,8 @@ class HBNBCommand(cmd.Cmd):
                     if model in k:
                         count += 1
             print(count)
+        elif command == "show":
+            self.do_show("{} {}".format(model, params))
 
 
 
