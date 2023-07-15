@@ -13,4 +13,4 @@ class TestConsole(unittest.TestCase):
     def test__to_dict(self):
         """Test to_dict method correctness"""
         console = HBNBCommand()
-       # test it
+        # test it
