@@ -26,7 +26,7 @@ class BaseModel(object):
 
     def __str__(self):
         """returns string representation of the class"""
-        _s = "[{}] ({}) {}".format(BaseModel.__name__, self.id, self.__dict__)
+        _s = "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
         return _s
 
     def save(self):
@@ -43,7 +43,7 @@ class BaseModel(object):
         keys = self.__dict__.keys()
         for key in keys:
             _dict[key] = self.__dict__[key]
-        _dict['__class__'] = BaseModel.__name__
+        _dict['__class__'] = self.__class__.__name__
         _dict['created_at'] = self.created_at.isoformat()
         _dict['updated_at'] = self.updated_at.isoformat()
 
