@@ -7,7 +7,7 @@ import unittest
 from models.place import Place
 
 
-class TestAemnityClass(unittest.TestCase):
+class TestPlaceClass(unittest.TestCase):
     """Test Cases for Place class"""
 
     def test__to_dict(self):

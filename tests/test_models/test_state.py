@@ -7,7 +7,7 @@ import unittest
 from models.state import State
 
 
-class TestAemnityClass(unittest.TestCase):
+class TestStateClass(unittest.TestCase):
     """Test Cases for State class"""
 
     def test__to_dict(self):

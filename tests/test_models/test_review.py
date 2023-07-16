@@ -7,7 +7,7 @@ import unittest
 from models.review import Review
 
 
-class TestAemnityClass(unittest.TestCase):
+class TestReviewClass(unittest.TestCase):
     """Test Cases for Review class"""
 
     def test__to_dict(self):

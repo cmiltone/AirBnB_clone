@@ -7,7 +7,7 @@ import unittest
 from models.city import City
 
 
-class TestAemnityClass(unittest.TestCase):
+class TestCityClass(unittest.TestCase):
     """Test Cases for City class"""
 
     def test__to_dict(self):

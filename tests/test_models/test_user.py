@@ -7,7 +7,7 @@ import unittest
 from models.user import User
 
 
-class TestAemnityClass(unittest.TestCase):
+class TestUserClass(unittest.TestCase):
     """Test Cases for User class"""
 
     def test__to_dict(self):
