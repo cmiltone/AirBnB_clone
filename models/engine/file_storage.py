@@ -3,7 +3,6 @@
 module for file storage class
 """
 import json
-from io import StringIO
 
 
 class FileStorage:
@@ -39,6 +38,7 @@ class FileStorage:
                 from models.place import Place
                 from models.review import Review
                 from models.state import State
+                from models.user import User
 
                 for k, v in objs.items():
                     name = v.get('__class__')
