@@ -8,7 +8,7 @@ from console import HBNBCommand
 
 
 class TestConsole(unittest.TestCase):
-    """Test Cases for Base class"""
+    """Test Cases for Console class"""
 
     def test__to_dict(self):
         """Test to_dict method correctness"""
