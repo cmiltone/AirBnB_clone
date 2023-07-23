@@ -26,8 +26,8 @@ button:hover {
   opacity: 0.9;
 }
 
-div.locations,
-div.amenities {
+section.filters > div.locations,
+section.filters > div.amenities {
   height: 100%;
   width: 25%;
   position: absolute;
