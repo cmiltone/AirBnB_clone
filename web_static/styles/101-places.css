@@ -1,0 +1,124 @@
+section.places > h1 {
+  font-size: 30px;
+}
+
+section.places > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+section.places > div > article {
+  position: relative;
+  width: 390px;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ff5a5f;
+  border-radius: 4px;
+}
+
+section.places > div > article > h2 {
+  font-size: 20px;
+  margin: unset;
+  text-align: center;
+}
+
+div.price_by_night {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  color: #ff5a5f;
+  border: 4px solid #ff5a5f;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.information {
+  margin-top: 45px;
+  height: 80px;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.max_guest, div.number_rooms, div.number_bathrooms {
+  width: 100px;
+  height: 70px;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+div.max_guest {
+  background-image: url('../images/icon_group.png');
+}
+
+div.number_rooms {
+  background-image: url('../images/icon_bed.png');
+}
+
+div.number_bathrooms {
+  background-image: url('../images/icon_bath.png');
+}
+
+div.user,
+div.description {
+  margin: 15px 0;
+}
+
+article > div.amenities,
+article > div.reviews {
+  margin-top: 40px;
+}
+
+article > div.amenities > h2,
+article > div.reviews > h2 {
+  font-size: 16px;
+}
+
+article > div.amenities > ul,
+article > div.reviews > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+article > div.amenities > ul > li {
+  width: 115px;
+  height: 50px;
+  background-position: center left;
+  background-repeat: no-repeat;
+  display: flex;
+  padding-left: 48px;
+  align-items: center;
+}
+
+li.tv {
+  background-image: url('../images/icon_tv.png');
+}
+
+li.wifi {
+  background-image: url('../images/icon_wifi.png');
+}
+
+li.pet-freindly {
+  background-image: url('../images/icon_pets.png');
+}
+
+article > div.reviews > ul > li > h3 {
+  font-size: 14px;
+}
+
+article > div.reviews > ul > li > p {
+  font-size: 12px;
+}
