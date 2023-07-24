@@ -122,3 +122,15 @@ article > div.reviews > ul > li > h3 {
 article > div.reviews > ul > li > p {
   font-size: 12px;
 }
+
+@media only screen and (max-width: 600px) {
+  div.max_guest, div.number_rooms, div.number_bathrooms {
+    width: 83px;
+  }
+
+  section.places > div > article {
+    width: 100%;
+    padding: 20px 2px;
+    margin: 20px 0;
+  }
+}

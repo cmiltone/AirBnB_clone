@@ -85,19 +85,21 @@ div.amenities:hover > ul {
 }
 
 @media only screen and (max-width: 600px) {
-  body {
-    width: 95vw;
+   body {
+    width: 96vw;
+    margin: auto;
   }
 
-  div.container {
+  /*div.container {
     max-width: 80vw;
-  }
+  } */
 
   section.filters {
     height: auto;
     display: flex;
     flex-wrap: wrap;
-    padding: 5px;
+    padding: 0;
+    max-width: 98%
   }
 
   section.filters > div.locations,
